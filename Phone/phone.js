@@ -17,7 +17,7 @@
 // ===============
 const appversion = "0.3.5";
 const sipjsversion = "0.20.0";
-
+// console.log("PPPPPPPPPPPPPPPPPPPHHHHHHHHHHHHHHHHHHHHHOOOOOOOOOOOOOOOOOOOOOOOOOONNNNNNNNNNNNNNNNNNEEEEEEEEEEEEEEEEEEE")
 // Set the following to null to disable
 let welcomeScreen = "<div class=\"UiWindowField\"><pre style=\"font-size: 12px\">";
 welcomeScreen += "===========================================================================\n";
@@ -191,7 +191,291 @@ let AudioinputDevices = [];
 let VideoinputDevices = [];
 let SpeakerDevices = [];
 let Lines = [];
-let lang = {}
+let lang = {
+    "create_group" : "Create Group",
+    "add_someone" : "Add Someone",
+    "find_someone" : "Find someone...",
+    "refresh_registration" : "Refresh Registration",
+    "configure_extension" : "Configure Extension",
+    "auto_answer" : "Auto Answer",
+    "do_no_disturb" : "Do No Disturb",
+    "call_waiting" : "Call Waiting",
+    "record_all_calls" : "Record All Calls",
+    "extension_number" : "Extension Number",
+    "email" : "Email",
+    "mobile" : "Mobile",
+    "alternative_contact" : "Alternate Contact",
+    "full_name" : "Full Name",
+    "eg_full_name" : "eg: Keyla James",
+    "title_description" : "Title / Description",
+    "eg_general_manager" : "eg: General Manager",
+    "internal_subscribe_extension" : "Subscribe Extension (Internal)",
+    "eg_internal_subscribe_extension" : "eg: 100 or john",
+    "mobile_number" : "Mobile Number",
+    "eg_mobile_number" : "eg: +44 123-456 7890",
+    "eg_email" : "eg: Keyla.James@raspberrypi.org",
+    "contact_number_1" : "Contact Number 1",
+    "eg_contact_number_1" : "eg: +1 234 567 8901",
+    "contact_number_2" : "Contact Number 2",
+    "eg_contact_number_2" : "eg: +441234567890",
+    "add" : "Add",
+    "cancel" : "Cancel",
+    "save" : "Save",
+    "reload_required" : "Reload Required",
+    "alert_settings" : "In order to apply these settings, the page must reload, OK?",
+    "account" : "Account",
+    "audio_video" : "Audio & Video",
+    "appearance" : "Appearance",
+    "notifications" : "Notifications",
+    "asterisk_server_address" : "Asterisk Server Address",
+    "eg_asterisk_server_address" : "eg: 192.168.1.1 or raspberrypi.local",
+    "websocket_port" : "WebSocket Port",
+    "eg_websocket_port" : "eg: 4443",
+    "websocket_path" : "WebSocket Path",
+    "eg_websocket_path" : "/ws",
+    "sip_username" : "SIP Username",
+    "eg_sip_username" : "eg: webrtc",
+    "sip_password" : "SIP Password",
+    "eg_sip_password" : "eg: 1234",
+    "speaker" : "Speaker",
+    "microphone" : "Microphone",
+    "camera" : "Camera",
+    "frame_rate" : "Frame Rate (per second)",
+    "quality" : "Quality",
+    "image_orientation" : "Image Orientation",
+    "aspect_ratio" : "Aspect Ratio",
+    "preview" : "Preview",
+    "ringtone" : "Ringtone",
+    "ring_device" : "Ring Device",
+    "auto_gain_control" : "Auto Gain Control",
+    "echo_cancellation" : "Echo Cancellation",
+    "noise_suppression" : "Noise Suppression",
+    "enable_onscreen_notifications" : "Enabled Onscreen Notifications",
+    "alert_notification_permission" : "You need to accept the permission request to allow Notifications",
+    "permission" : "Permission",
+    "error" : "Error",
+    "alert_media_devices" : "MediaDevices was null -  Check if your connection is secure (HTTPS)",
+    "alert_error_user_media" : "Error getting User Media.",
+    "alert_file_size" : "The file is bigger than 50MB, you cannot upload this file",
+    "alert_single_file" : "Select a single file",
+    "alert_not_found" : "This item was not found",
+    "edit" : "Edit",
+    "welcome" : "Welcome",
+    "accept" : "Accept",
+    "error_user_agant" : "Error creating User Agent",
+    "registered" : "Registered",
+    "registration_failed" : "Registration Failed",
+    "unregistered" : "Unregistered, bye!",
+    "connected_to_web_socket" : "Connected to Web Socket!",
+    "disconnected_from_web_socket" : "Disconnected from Web Socket!",
+    "web_socket_error" : "Web Socket Error",
+    "connecting_to_web_socket" : "Connecting to Web Socket...",
+    "error_connecting_web_socket" : "Error connecting to the server on the WebSocket port",
+    "sending_registration" : "Sending Registration...",
+    "unsubscribing" : "Unsubscribing...",
+    "disconnecting" : "Disconnecting...",
+    "incoming_call" : "Incoming Call",
+    "incoming_call_from" : "Incoming call from:",
+    "answer_call" : "Answer Call",
+    "answer_call_with_video" : "Answer Call with Video",
+    "reject_call" : "Reject Call",
+    "call_failed" : "Call Failed",
+    "alert_no_microphone" : "Sorry, you don't have any Microphone connected to this computer. You cannot receive calls.",
+    "call_in_progress" : "Call in Progress!",
+    "call_rejected" : "Call Rejected",
+    "trying" : "Trying...",
+    "ringing" : "Ringing...",
+    "call_cancelled" : "Call Cancelled",
+    "call_ended" : "Call ended, bye!",
+    "yes" : "Yes",
+    "no" : "No",
+    "receive_kilobits_per_second" : "Receive Kilobits per second",
+    "receive_packets_per_second" : "Receive Packets per second",
+    "receive_packet_loss" : "Receive Packet Loss",
+    "receive_jitter" : "Receive Jitter",
+    "receive_audio_levels" : "Receive Audio Levels",
+    "send_kilobits_per_second" : "Send Kilobits Per Second",
+    "send_packets_per_second" : "Send Packets Per Second",
+    "state_not_online" : "Not online",
+    "state_ready" : "Ready",
+    "state_on_the_phone" : "On the phone",
+    "state_ringing" : "Ringing",
+    "state_on_hold" : "On hold",
+    "state_unavailable" : "Unavailable",
+    "state_unknown" : "Unknown",
+    "alert_empty_text_message" : "Please enter something into the text box provided and click send",
+    "no_message" : "No Message",
+    "message_from" : "Message from",
+    "starting_video_call" : "Starting Video Call...",
+    "call_extension" : "Call Extension",
+    "call_mobile" : "Call Mobile",
+    "call_number" : "Call Number",
+    "call_group" : "Call Group",
+    "starting_audio_call" : "Starting Audio Call...",
+    "call_recording_started" : "Call Recording Started",
+    "call_recording_stopped" : "Call Recording Stopped",
+    "confirm_stop_recording" : "Are you sure you want to stop recording this call?",
+    "stop_recording" : "Stop Recording?",
+    "width" : "Width",
+    "height" : "Height",
+    "extension" : "Extension",
+    "call_blind_transfered" : "Call Blind Transfered",
+    "connecting" : "Connecting...",
+    "attended_transfer_call_started" : "Attended Transfer Call Started...",
+    "attended_transfer_call_cancelled" : "Attended Transfer Call Cancelled",
+    "attended_transfer_complete_accepted" : "Attended Transfer Complete (Accepted)",
+    "attended_transfer_complete" : "Attended Transfer complete",
+    "attended_transfer_call_ended" : "Attended Transfer Call Ended",
+    "attended_transfer_call_rejected" : "Attended Transfer Call Rejected",
+    "attended_transfer_call_terminated" : "Attended Transfer Call Terminated",
+    "conference_call_started" : "Conference Call Started...",
+    "canference_call_cancelled" : "Conference Call Cancelled",
+    "conference_call_in_progress" : "Conference Call In Progress",
+    "conference_call_ended" : "Conference Call Ended",
+    "conference_call_rejected" : "Conference Call Rejected",
+    "conference_call_terminated" : "Conference Call Terminated",
+    "null_session" : "Session Error, Null",
+    "call_on_hold" : "Call on Hold",
+    "send_dtmf" : "Sent DTMF",
+    "switching_video_source" : "Switching video source",
+    "switching_to_canvas" : "Switching to canvas",
+    "switching_to_shared_video" : "Switching to Shared Video",
+    "switching_to_shared_screeen" : "Switching to Shared Screen",
+    "video_disabled" : "Video Disabled",
+    "line" : "Line",
+    "back" : "Back",
+    "audio_call" : "Audio Call",
+    "video_call" : "Video Call",
+    "find_something" : "Find Something",
+    "remove" : "Remove",
+    "present" : "Present",
+    "scratchpad" : "Scratchpad",
+    "screen" : "Screen",
+    "video" : "Video",
+    "blank" : "Blank",
+    "show_key_pad" : "Show Key Pad",
+    "mute" : "Mute",
+    "unmute" : "Unmute",
+    "start_call_recording" : "Start Call Recording",
+    "stop_call_recording" : "Stop Call Recording",
+    "transfer_call" : "Transfer Call",
+    "cancel_transfer" : "Cancel Transfer",
+    "conference_call" : "Conference Call",
+    "cancel_conference" : "Cancel Conference",
+    "hold_call" : "Hold Call",
+    "resume_call" : "Resume Call",
+    "end_call" : "End Call",
+    "search_or_enter_number" : "Search or enter number",
+    "blind_transfer" : "Blind Transfer",
+    "attended_transfer" : "Attended Transfer",
+    "complete_transfer" : "Complete Transfer",
+    "end_transfer_call" : "End Transfer Call",
+    "call" : "Call",
+    "cancel_call" : "Cancel Call",
+    "join_conference_call" : "Join Conference Call",
+    "end_conference_call" : "End Conference Call",
+    "microphone_levels" : "Microphone Levels",
+    "speaker_levels" : "Speaker Levels",
+    "send_statistics" : "Send Statistics",
+    "receive_statistics" : "Receive Statistics",
+    "find_something_in_the_message_stream" : "Find something in the message stream...",
+    "type_your_message_here" : "Type your message here...",
+    "menu" : "Menu",
+    "confirm_remove_buddy" : "This buddy will be removed from your list. Confirm remove?",
+    "remove_buddy" : "Remove Buddy",
+    "read_more" : "Read More",
+    "started" : "Started",
+    "stopped" : "Stopped",
+    "recording_duration" : "Recording Duration",
+    "a_video_call" : "a video call",
+    "an_audio_call" : "an audio call",
+    "you_tried_to_make" : "You tried to make",
+    "you_made" : "You made",
+    "and_spoke_for" : "and spoke for",
+    "you_missed_a_call" : "You missed a call",
+    "you_recieved" : "You received",
+    "second_single" : "second",
+    "seconds_plural" : "seconds",
+    "minute_single" : "minute",
+    "minutes_plural" : "minutes",
+    "hour_single" : "hour",
+    "hours_plural" : "hours",
+    "bytes" : "Bytes",
+    "kb" : "KB",
+    "mb" : "MB",
+    "gb" : "GB",
+    "tb" : "TB",
+    "pb" : "PB",
+    "eb" : "EB",
+    "zb" : "ZB",
+    "yb" : "YB",
+    "call_on_mute" : "Call on Mute",
+    "call_off_mute" : "Call off Mute",
+    "tag_call" : "Tag Call",
+    "clear_flag" : "Clear Flag",
+    "flag_call" : "Flag Call",
+    "edit_comment" : "Edit Comment",
+    "copy_message" : "Copy Message",
+    "quote_message" : "Quote Message",
+    "select_expression" : "Select Expression",
+    "dictate_message" : "Dictate Message",
+    "alert_speech_recognition" : "Your browser does not support this function, sorry",
+    "speech_recognition" : "Speech Recognition",
+    "im_listening" : "I'm listening...",
+    "msg_silence_detection": "You were quiet for a while so voice recognition turned itself off.",
+    "msg_no_speech": "No speech was detected. Try again.",
+    "loading": "Loading...",
+    "select_video": "Select Video",
+    "ok": "OK",
+    "device_settings" : "Device Settings",
+    "call_stats" : "Call Stats",
+    "you_received_a_call_from" : "You received a call from",
+    "you_made_a_call_to" : "You made a call to",
+    "you_answered_after" : "You answered after",
+    "they_answered_after" : "They answered after",
+    "with_video" : "with video",
+    "you_started_a_blind_transfer_to" : "You started a blind transfer to",
+    "you_started_an_attended_transfer_to" : "You started an attended transfer to",
+    "the_call_was_completed" : "The call was completed.",
+    "the_call_was_not_completed" : "The call was not completed.",
+    "you_put_the_call_on_mute" : "You put the call on mute.",
+    "you_took_the_call_off_mute" : "You took the call off mute.",
+    "you_put_the_call_on_hold" : "You put the call on hold.",
+    "you_took_the_call_off_hold" : "You took the call off hold.",
+    "you_ended_the_call" : "You ended the call.",
+    "they_ended_the_call" : "They ended the call.",
+    "call_is_being_recorded" : "Call is being recorded.",
+    "now_stopped" : "Now Stopped",
+    "you_started_a_conference_call_to" : "You started a conference call to",
+    "show_call_detail_record" : "Show Call Detail Record",
+    "call_detail_record" : "Call Detail Record",
+    "call_direction" : "Call Direction",
+    "call_date_and_time" : "Call Date & Time",
+    "ring_time" : "Ring Time",
+    "talk_time" : "Talk Time",
+    "call_duration" : "Call Duration",
+    "flagged" : "Flagged",
+    "call_tags" : "Call Tags",
+    "call_notes" : "Call Notes",
+    "activity_timeline" : "Activity Timeline",
+    "call_recordings" : "Call Recordings",
+    "save_as" : "Save As",
+    "right_click_and_select_save_link_as" : "Right click and select Save Link As",
+    "send" : "Send",
+    "set_status" : "Set Status",
+    "default_status" : "(No Status)",
+    "is_typing" : "is typing",
+    "chat_engine" : "Chat Engine",
+    "server_address" : "Server Address",
+    "xmpp_domain" : "Domain",
+    "eg_xmpp_domain" : "e.g. raspberrypi.local",
+    "eg_xmpp_server_address" : "eg: 192.168.1.1 or raspberrypi.local",
+    "allow_calls_on_dnd" : "Allow calls during Do Not Disturb",
+    "basic_extension" : "Basic Extension",
+    "extension_including_xmpp" : "Extension including Message Exchange",
+    "addressbook_contact" : "Address Book Contact",
+    "subscribe_to_dev_state" : "Subscribe to Device State Notifications"
+}
 let audioBlobs = {}
 let newLineNumber = 1;
 
@@ -441,32 +725,32 @@ $(document).ready(function () {
     if(options.XmppChatGroupService !== undefined) XmppChatGroupService = options.XmppChatGroupService;
 
     console.log("Runtime options", options);
-
+    InitUi();
     // Load Langauge File
     // ==================
-    $.getJSON(hostingPrefex + "lang/en.json", function(data){
-        lang = data;
-        console.log("English Lanaguage Pack loaded: ", lang);
-        if(loadAlternateLang == true){
-            var userLang = GetAlternateLanguage();
-            if(userLang != ""){
-                console.log("Loading Alternate Lanaguage Pack: ", userLang);
-                $.getJSON(hostingPrefex +"lang/"+ userLang +".json", function (altdata){
-                    lang = altdata;
-                }).always(function() {
-                    console.log("Alternate Lanaguage Pack loaded: ", lang);
-                    InitUi();
-                });
-            }
-            else {
-                console.log("No Alternate Lanaguage Found.");
-                InitUi();
-            }
-        }
-        else {
-            InitUi();
-        }
-    });
+    // $.getJSON(hostingPrefex + "lang/en.json", function(data){
+    //     lang = data;
+    //     console.log("English Lanaguage Pack loaded: ", lang);
+    //     if(loadAlternateLang == true){
+    //         var userLang = GetAlternateLanguage();
+    //         if(userLang != ""){
+    //             console.log("Loading Alternate Lanaguage Pack: ", userLang);
+    //             $.getJSON(hostingPrefex +"lang/"+ userLang +".json", function (altdata){
+    //                 lang = altdata;
+    //             }).always(function() {
+    //                 console.log("Alternate Lanaguage Pack loaded: ", lang);
+    //                 InitUi();
+    //             });
+    //         }
+    //         else {
+    //             console.log("No Alternate Lanaguage Found.");
+    //             InitUi();
+    //         }
+    //     }
+    //     else {
+    //         InitUi();
+    //     }
+    // });
 });
 if(window.matchMedia){
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
@@ -4406,7 +4690,7 @@ function SendImageDataMessage(buddy, ImgDataUrl) {
     // ===========
 
     var DateTime = moment.utc().format("YYYY-MM-DD HH:mm:ss UTC");
-    var formattedMessage = '<IMG class=previewImage onClick="PreviewImage(this)" src="'+ ImgDataUrl +'">';
+    var formattedMessage = '<IMG class=previewImage  crossorigin="anonymous" onClick="PreviewImage(this)" src="'+ ImgDataUrl +'">';
     var messageString = "<table class=ourChatMessage cellspacing=0 cellpadding=0><tr><td style=\"width: 80px\">"
         + "<div class=messageDate>" + DateTime + "</div>"
         + "</td><td>"
@@ -4505,7 +4789,7 @@ function SendFileDataMessage(buddy, FileDataUrl, fileName, fileSize) {
     var formattedMessage = "<DIV><SPAN id=\"FileUpload-"+ fileID +"\">Sending</SPAN>: "+ fileIcon +" "+ fileName +"</DIV>"
     formattedMessage += "<DIV id=\"FileProgress-"+ fileID +"\" class=\"progressBarContainer\"><DIV id=\"FileProgress-Bar-"+ fileID +"\" class=\"progressBarTrack\"></DIV></DIV>"
     if(showReview){
-        formattedMessage += "<DIV><IMG class=previewImage onClick=\"PreviewImage(this)\" src=\""+ FileDataUrl +"\"></DIV>";
+        formattedMessage += "<DIV><IMG  crossorigin=\"anonymous\" class=previewImage onClick=\"PreviewImage(this)\" src=\""+ FileDataUrl +"\"></DIV>";
     }
 
     var messageString = "<table class=ourChatMessage cellspacing=0 cellpadding=0><tr><td style=\"width: 80px\">"
@@ -9187,7 +9471,7 @@ function RefreshStream(buddyObj, filter) {
                                 var posterWidth = recording.Poster.width;
                                 var posterHeight = recording.Poster.height;
                                 var posterImage = recording.Poster.posterBase64;
-                                recordingsHtml += "<div><IMG src=\""+ posterImage +"\"><button onclick=\"PlayVideoCallRecording(this, '"+ item.CdrId +"', '"+ recording.uID +"')\" class=videoPoster><i class=\"fa fa-play\"></i></button></div>";
+                                recordingsHtml += "<div><IMG crossorigin=\"anonymous\" src=\""+ posterImage +"\"><button onclick=\"PlayVideoCallRecording(this, '"+ item.CdrId +"', '"+ recording.uID +"')\" class=videoPoster><i class=\"fa fa-play\"></i></button></div>";
                             }
                             else {
                                 recordingsHtml += "<div><button class=roundButtons onclick=\"PlayVideoCallRecording(this, '"+ item.CdrId +"', '"+ recording.uID +"', '"+ buddyObj.identity +"')\"><i class=\"fa fa-video-camera\"></i></button></div>";
@@ -10390,46 +10674,46 @@ function ShowMyProfile(){
 
             var chatEng = ($("#chat_type_sip").is(':checked'))? "SIMPLE" : "XMPP";
 
-            if(EnableAccountSettings){
-                if($("#Configure_Account_wssServer").val() == "") {
-                    console.warn("Validation Failed");
-                    return;
-                } 
-                if($("#Configure_Account_WebSocketPort").val() == "") {
-                    console.warn("Validation Failed");
-                    return;
-                } 
-                if($("#Configure_Account_profileUser").val() == "") {
-                    console.warn("Validation Failed");
-                    return;
-                } 
-                if($("#Configure_Account_profileName").val() == "") {
-                    console.warn("Validation Failed");
-                    return;
-                } 
-                if($("#Configure_Account_SipUsername").val() == "") {
-                    console.warn("Validation Failed");
-                    return;
-                } 
-                if($("#Configure_Account_SipPassword").val() == "") {
-                    console.warn("Validation Failed");
-                    return;
-                }
-                if(chatEng == "XMPP"){
-                    if($("#Configure_Account_xmpp_domain").val() == "") {
-                        console.warn("Validation Failed");
-                        return;
-                    } 
-                    if($("#Configure_Account_xmpp_address").val() == "") {
-                        console.warn("Validation Failed");
-                        return;
-                    } 
-                    if($("#Configure_Account_xmpp_port").val() == "") {
-                        console.warn("Validation Failed");
-                        return;
-                    } 
-                }
-            }
+            // if(EnableAccountSettings){
+            //     if($("#Configure_Account_wssServer").val() == "") {
+            //         console.warn("Validation Failed");
+            //         return;
+            //     } 
+            //     if($("#Configure_Account_WebSocketPort").val() == "") {
+            //         console.warn("Validation Failed");
+            //         return;
+            //     } 
+            //     if($("#Configure_Account_profileUser").val() == "") {
+            //         console.warn("Validation Failed");
+            //         return;
+            //     } 
+            //     if($("#Configure_Account_profileName").val() == "") {
+            //         console.warn("Validation Failed");
+            //         return;
+            //     } 
+            //     if($("#Configure_Account_SipUsername").val() == "") {
+            //         console.warn("Validation Failed");
+            //         return;
+            //     } 
+            //     if($("#Configure_Account_SipPassword").val() == "") {
+            //         console.warn("Validation Failed");
+            //         return;
+            //     }
+            //     if(chatEng == "XMPP"){
+            //         if($("#Configure_Account_xmpp_domain").val() == "") {
+            //             console.warn("Validation Failed");
+            //             return;
+            //         } 
+            //         if($("#Configure_Account_xmpp_address").val() == "") {
+            //             console.warn("Validation Failed");
+            //             return;
+            //         } 
+            //         if($("#Configure_Account_xmpp_port").val() == "") {
+            //             console.warn("Validation Failed");
+            //             return;
+            //         } 
+            //     }
+            // }
 
             // The profileUserID identifies users
             if(localDB.getItem("profileUserID") == null) localDB.setItem("profileUserID", uID()); // For first time only
